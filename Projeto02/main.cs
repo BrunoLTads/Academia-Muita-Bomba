@@ -27,7 +27,7 @@ class Program{
   public static void RegistroInserir(){
     Console.WriteLine("----- Inserir um novo registro -----");
     // Ler dados
-    Console.WriteLine("Informe o id: ");
+    Console.Write("Informe o id: ");
     int id = int.Parse(Console.ReadLine());
     Console.Write("Informe a descrição: ");
     string descricao = Console.ReadLine();
@@ -39,8 +39,8 @@ class Program{
   }
   public static void RegistroListar(){
     Console.WriteLine("----- Listar os registros cadastrados -----");
-    foreach(Registro obj in Sistema.Registrolistar())
-    Console.WriteLine(obj);
-  Console.WriteLine("-------------------------------")
+    foreach(Registro obj in Sistema.RegistroListar())
+     Console.WriteLine(obj);
+    Console.WriteLine("-------------------------------");
   }
 }
