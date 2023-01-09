@@ -13,6 +13,10 @@ class Program{
       case 2 : RegistroListar(); break;
       case 3 : RegistroAtualizar(); break;
       case 4 : RegistroExcluir(); break;
+      case 5 : MatriculaInserir(); break;
+      case 6 : MatriculaListar(); break;
+      case 7 : MatriculaAtualizar(); break;
+      case 8 : MatriculaExcluir(); break;
       }
       }
       catch(Exception erro){
@@ -29,6 +33,10 @@ class Program{
     Console.WriteLine("02 - Listar registros cadastrados");
     Console.WriteLine("03 - Atualizar registros cadastrados");
     Console.WriteLine("04 - Excluir registro cadastrado");
+    Console.WriteLine("05 - Inserir nova matrícula");
+    Console.WriteLine("06 - Listar matrículas cadastradas");
+    Console.WriteLine("07 - Atualizar matrículas cadastradas");
+    Console.WriteLine("08 - Excluir matrícula cadastrada");
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
     Console.WriteLine("Opção: ");
@@ -78,6 +86,71 @@ class Program{
     Registro obj = new Registro(id, descricao);
     // Excluir o registro no sistema
     Sistema.RegistroExcluir(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void MatriculaInserir(){
+    Console.WriteLine("----- Inserir uma nova matrícula -----");
+    // Ler dados
+    Console.Write("Informe o id: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe o nome: ");
+    string nome = Console.ReadLine();
+    Console.Write("Informe a idade: ");
+    int idade = int.Parse(Console.ReadLine());
+    Console.Write("Informe a data de pagamento: ");
+    // Se atentar para essa data de pagamento. Acho melhor fazer algo para deixar ela automática.
+    DateTime pagamento = DateTime.Parse(Console.ReadLine());
+    Console.Write("Informe o plano: ");
+    string plano = (Console.ReadLine());
+
+    RegistroListar();
+    Console.Write("Informe o id do registro: ");
+    int idRegistro = int.Parse(Console.ReadLine());
+
+    
+    // Instanciar a classe Matricula
+    Matricula obj = new Matricula(id, nome, idade, pagamento, plano, idRegistro);
+    // Inserir a matrícula no sistema
+    Sistema.MatriculaInserir(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void MatriculaListar(){
+    Console.WriteLine("----- Listar as matrículas cadastradas -----");
+    foreach(Matricula obj in Sistema.MatriculaListar())
+     Console.WriteLine(obj);
+    Console.WriteLine("-------------------------------");
+  }
+  public static void MatriculaAtualizar(){
+    Console.WriteLine("----- Atualize uma matrícula -----");
+    // Ler dados
+    Console.Write("Informe o id da matrícula: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe o nome: ");
+    string nome = Console.ReadLine();
+    Console.Write("Informe a idade: ");
+    int idade = int.Parse(Console.ReadLine());
+    Console.Write("Informe a data de pagamento: ");
+    DateTime pagamento = DateTime.Parse(Console.ReadLine());
+    Console.Write("Informe o plano: ");
+    string plano = (Console.ReadLine());
+    RegistroListar();
+    Console.Write("Informe o id do registro: ");
+    int idRegistro = int.Parse(Console.ReadLine());
+    // Instanciar a classe Matricula
+    Matricula obj = new Matricula(id, nome, idade, pagamento, plano, idRegistro);
+    // Atualizar o registro no sistema
+    Sistema.MatriculaAtualizar(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void MatriculaExcluir(){
+    Console.WriteLine("----- Exclua uma matrícula -----");
+    // Ler dados
+    Console.Write("Informe o id da matrícula: ");
+    int id = int.Parse(Console.ReadLine());
+    // Instanciar a classe Matricula
+    Matricula obj = new Matricula(id);
+    // Excluir a matrícula no sistema
+    Sistema.MatriculaExcluir(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 }

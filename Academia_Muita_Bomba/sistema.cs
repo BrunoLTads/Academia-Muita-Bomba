@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 
 class Sistema{
   private static Registro[] registros = new Registro[10];
   private static int nRegistros;
+  private static List<Matricula> matriculas = new List<Matricula>();
   public static void RegistroInserir(Registro obj){
     // verifica o tamanho do vetor
     if (nRegistros == registros.Length)
@@ -54,5 +56,41 @@ class Sistema{
       if (obj.GetId() == id) return i;
     }
     return -1;
+  }
+  
+  public static void MatriculaInserir(Matricula obj){
+    matriculas.Add(obj);
+    }
+  public static List<Matricula> MatriculaListar(){
+    return matriculas;
+    }
+  public static Matricula MatriculaListar(int id){
+    // Retornar a matricula do id informado
+    foreach(Matricula obj in matriculas)
+    if (obj.GetId() == id){
+      return obj;
+    }
+    return null;
+    }
+  public static void MatriculaAtualizar(Matricula obj){
+    // Buscar matricula informada
+    Matricula aux = MatriculaListar(obj.GetId());
+    // Atualizar atributos da matricula
+    if (aux != null){
+      aux.SetId(obj.GetId());
+      aux.SetNome(obj.GetNome());
+      aux.SetIdade(obj.GetIdade());
+      aux.SetPagamento(obj.GetPagamento());
+      aux.SetPlano(obj.GetPlano());
+      aux.SetIdRegistro(obj.GetIdRegistro());
+    }
+  }
+  public static void MatriculaExcluir(Matricula obj){
+    //Encontrar o indíce do obj na lista
+    Matricula aux = MatriculaListar(obj.GetId());
+    if (aux != null){
+      matriculas.Remove(aux);
+    }
+    // Remove a matricula quando o índice for achado
   }
 }

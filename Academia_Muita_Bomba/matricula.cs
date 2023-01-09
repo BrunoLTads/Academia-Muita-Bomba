@@ -7,6 +7,9 @@ class Matricula{
   private DateTime pagamento;
   private string plano;
   private int idRegistro;
+  public Matricula(int id){
+    this.id = id;
+  }
   public Matricula(int id, string nome, int idade, DateTime pagamento, string plano, int idRegistro){
     this.id = id;
     this.nome = nome;
