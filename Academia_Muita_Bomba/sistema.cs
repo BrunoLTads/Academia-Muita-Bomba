@@ -5,6 +5,7 @@ class Sistema{
   private static Registro[] registros = new Registro[10];
   private static int nRegistros;
   private static List<Matricula> matriculas = new List<Matricula>();
+  private static List<Servico> servicos = new List<Servico>();
   public static void RegistroInserir(Registro obj){
     // verifica o tamanho do vetor
     if (nRegistros == registros.Length)
@@ -92,5 +93,44 @@ class Sistema{
       matriculas.Remove(aux);
     }
     // Remove a matricula quando o índice for achado
+  }
+  public static void ServicoInserir(Servico obj){
+    // Id do serviço
+    int id = 0;
+    foreach(Servico aux in servicos)
+      if (aux.Id > id){
+        id = aux.Id;
+      }
+    obj.Id = id + 1;
+    servicos.Add(obj);
+  }
+
+  public static List<Servico> ServicoListar(){
+    return servicos;
+  }
+
+  public static Servico ServicoListar(int id){
+    // Olha a lista e pega o id
+    foreach(Servico obj in servicos)
+      if (obj.Id == id){
+        return obj;
+      }
+    return null;
+  }
+
+  public static void ServicoAtualizar(Servico obj){
+    // Encontra o servico com o id
+    Servico aux = ServicoListar(obj.Id);
+    // Atualiza
+    if (aux != null){
+      aux.Descricao = obj.Descricao;
+    }
+  }
+
+  public static void ServicoExcluir(Servico obj){
+    Servico aux = ServicoListar(obj.Id);
+    if (aux != null){
+      servicos.Remove(aux);
+    }
   }
 }

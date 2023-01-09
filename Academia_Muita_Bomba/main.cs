@@ -17,6 +17,10 @@ class Program{
       case 6 : MatriculaListar(); break;
       case 7 : MatriculaAtualizar(); break;
       case 8 : MatriculaExcluir(); break;
+      case 9 : ServicoInserir(); break;
+      case 10 : ServicoListar(); break;
+      case 11 : ServicoAtualizar(); break;
+      case 12 : ServicoExcluir(); break;
       }
       }
       catch(Exception erro){
@@ -37,6 +41,10 @@ class Program{
     Console.WriteLine("06 - Listar matrículas cadastradas");
     Console.WriteLine("07 - Atualizar matrículas cadastradas");
     Console.WriteLine("08 - Excluir matrícula cadastrada");
+    Console.WriteLine("09 - Inserir serviço");
+    Console.WriteLine("10 - Listar serviços cadastrados");
+    Console.WriteLine("11 - Atualizar serviço");
+    Console.WriteLine("12 - Excluir um serviço");
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
     Console.WriteLine("Opção: ");
@@ -151,6 +159,38 @@ class Program{
     Matricula obj = new Matricula(id);
     // Excluir a matrícula no sistema
     Sistema.MatriculaExcluir(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void ServicoInserir(){
+    Console.WriteLine("----- Inserir um novo serviço -----");
+    Console.Write("Informe a descricao: ");
+    string desc = Console.ReadLine();
+    Servico obj = new Servico{Descricao = desc};
+    Sistema.ServicoInserir(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+
+  public static void ServicoListar(){
+    Console.WriteLine("----- Listar os serviçõs cadastradas -----");
+    foreach(Servico obj in Sistema.ServicoListar())
+     Console.WriteLine(obj);
+    Console.WriteLine("-------------------------------");
+  }
+  public static void ServicoAtualizar(){
+    Console.WriteLine("----- Atualizar um serviço -----");
+    Console.Write("Informe o id do serviço a ser utilizado");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe a descricao: ");
+    string desc = Console.ReadLine();
+    Servico obj = new Servico{Id = id, Descricao = desc};
+    Sistema.ServicoAtualizar(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void ServicoExcluir(){
+    Console.WriteLine("----- Informe o serviço a ser excluido -----");
+    int id = int.Parse(Console.ReadLine());
+    Servico obj = new Servico{Id = id};
+    Sistema.ServicoExcluir(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 }
