@@ -17,6 +17,7 @@ class Sistema{
     if (obj.GetId() == id){
       return obj;
     }
+  return null;
   }
   public static void LoginAtualizar(Login obj){
     Login aux = LoginListar(obj.GetId());
