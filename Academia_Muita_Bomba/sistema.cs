@@ -2,61 +2,36 @@ using System;
 using System.Collections.Generic;
 
 class Sistema{
-  private static Registro[] registros = new Registro[10];
-  private static int nRegistros;
+  private static List<Login> logins = new List<Login>();
   private static List<Matricula> matriculas = new List<Matricula>();
-  private static List<Servico> servicos = new List<Servico>();
-  public static void RegistroInserir(Registro obj){
-    // verifica o tamanho do vetor
-    if (nRegistros == registros.Length)
-      Array.Resize(ref registros, 2 * registros.Length);
-      // Inserir o objeto no vetor
-      registros[nRegistros] = obj;
-      // Incrementar o contador
-      nRegistros++;
-    }
-  public static Registro[] RegistroListar(){
-    // Retornar os objetos cadastrados
-    Registro[] aux = new Registro[nRegistros];
-    Array.Copy(registros, aux, nRegistros);
-    return aux;
-    }
-  public static Registro RegistroListar(int id){
-    // Retornar o registro do id informado
-    foreach(Registro obj in registros)
-    if (obj != null && obj.GetId() == id){
+  private static List<Evento> eventos = new List<Evento>();
+
+  public static void LoginInserir(Login obj){
+    logins.Add(obj);
+  }
+  public static List<Login> LoginListar(){
+    return logins;
+  }
+  public static Login LoginListar(int id){
+    foreach(Login obj in logins)
+    if (obj.GetId() == id){
       return obj;
     }
-    return null;
-    }
-  public static void RegistroAtualizar(Registro obj){
-    // Buscar registro informado
-    Registro aux = RegistroListar(obj.GetId());
-    // Atualizar a descrição
+  }
+  public static void LoginAtualizar(Login obj){
+    Login aux = LoginListar(obj.GetId());
     if (aux != null){
-      aux.SetDescricao(obj.GetDescricao());
+      aux.SetId(obj.GetId());
+      aux.SetNome(obj.GetNome());
+      aux.SetSenha(obj.GetSenha());
+      aux.SetCargo(obj.GetCargo());
     }
   }
-  public static void RegistroExcluir(Registro obj){
-    //Encontrar o indíce do obj no vetor
-    int aux = RegistroIndice(obj.GetId());
-    // Remove o registro quando o índice for achado
-    if (aux != -1){
-      for (int i = aux; i < nRegistros - 1; i++){
-        registros[i] = registros[i + 1];
-        nRegistros--;
-        // Ficar atento a esse nRegistros(nRegistro)
-      }
+  public static void LoginExcluir(Login obj){
+    Login aux = LoginListar(obj.GetId());
+    if (aux != null){
+      logins.Remove(aux);
     }
-  }
-  public static int RegistroIndice(int id){
-    //Localizar os registros no vetor para retornar o índice com o id
-    for(int i = 0; i < nRegistros; i++){
-      // Cada obj registro
-      Registro obj = registros[i];
-      if (obj.GetId() == id) return i;
-    }
-    return -1;
   }
   
   public static void MatriculaInserir(Matricula obj){
@@ -94,43 +69,43 @@ class Sistema{
     }
     // Remove a matricula quando o índice for achado
   }
-  public static void ServicoInserir(Servico obj){
+  public static void EventoInserir(Evento obj){
     // Id do serviço
     int id = 0;
-    foreach(Servico aux in servicos)
+    foreach(Evento aux in eventos)
       if (aux.Id > id){
         id = aux.Id;
       }
     obj.Id = id + 1;
-    servicos.Add(obj);
+    eventos.Add(obj);
   }
 
-  public static List<Servico> ServicoListar(){
-    return servicos;
+  public static List<Evento> EventoListar(){
+    return eventos;
   }
 
-  public static Servico ServicoListar(int id){
+  public static Evento EventoListar(int id){
     // Olha a lista e pega o id
-    foreach(Servico obj in servicos)
+    foreach(Evento obj in eventos)
       if (obj.Id == id){
         return obj;
       }
     return null;
   }
 
-  public static void ServicoAtualizar(Servico obj){
+  public static void EventoAtualizar(Evento obj){
     // Encontra o servico com o id
-    Servico aux = ServicoListar(obj.Id);
+    Evento aux = EventoListar(obj.Id);
     // Atualiza
     if (aux != null){
       aux.Descricao = obj.Descricao;
     }
   }
 
-  public static void ServicoExcluir(Servico obj){
-    Servico aux = ServicoListar(obj.Id);
+  public static void EventoExcluir(Evento obj){
+    Evento aux = EventoListar(obj.Id);
     if (aux != null){
-      servicos.Remove(aux);
+      eventos.Remove(aux);
     }
   }
 }
