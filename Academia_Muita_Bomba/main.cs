@@ -9,18 +9,18 @@ class Program{
       // O comando try junto com o catch mais abaixo, está sendo utilizado na criação de um bloco de erro. Caso o usuário erre o input, o menu enviará o usuário ao início.
       op = Menu();
       switch(op){
-      case 1 : LoginInserir(); break;
-      case 2 : LoginListar(); break;
-      case 3 : LoginAtualizar(); break;
-      case 4 : LoginExcluir(); break;
-      case 5 : MatriculaInserir(); break;
-      case 6 : MatriculaListar(); break;
-      case 7 : MatriculaAtualizar(); break;
-      case 8 : MatriculaExcluir(); break;
-      case 9 : EventoInserir(); break;
-      case 10 : EventoListar(); break;
-      case 11 : EventoAtualizar(); break;
-      case 12 : EventoExcluir(); break;
+      case 1 : LoginCreate(); break;
+      case 2 : LoginRead(); break;
+      case 3 : LoginUpdate(); break;
+      case 4 : LoginDelete(); break;
+      case 5 : MatriculaCreate(); break;
+      case 6 : MatriculaRead(); break;
+      case 7 : MatriculaUpdate(); break;
+      case 8 : MatriculaDelete(); break;
+      case 9 : EventoCreate(); break;
+      case 10 : EventoRead(); break;
+      case 11 : EventoUpdate(); break;
+      case 12 : EventoDelete(); break;
       }
       }
       catch(Exception erro){
@@ -52,7 +52,7 @@ class Program{
     Console.WriteLine("");
     return op;
   }
-  public static void LoginInserir(){
+  public static void LoginCreate(){
     Console.WriteLine("----- Inserir um novo login -----");
     // Ler dados
     Console.Write("Informe o id: ");
@@ -66,16 +66,16 @@ class Program{
     string cargo = Console.ReadLine();
     Login obj = new Login(id, nome, senha, cargo);
     // Inserir o login no sistema
-    Sistema.LoginInserir(obj);
+    Sistema.LoginCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void LoginListar(){
+  public static void LoginRead(){
     Console.WriteLine("----- Listar os registros cadastrados -----");
-    foreach(Login obj in Sistema.LoginListar())
+    foreach(Login obj in Sistema.LoginRead())
      Console.WriteLine(obj);
     Console.WriteLine("-------------------------------");
   }
-  public static void LoginAtualizar(){
+  public static void LoginUpdate(){
     Console.WriteLine("----- Atualize um login -----");
     // Ler dados
     Console.Write("Informe o id do login: ");
@@ -87,10 +87,10 @@ class Program{
     string plano = Console.ReadLine();
     Login obj = new Login(id, nome, senha, plano);
     // Atualizar o registro no sistema
-    Sistema.LoginAtualizar(obj);
+    Sistema.LoginUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void LoginExcluir(){
+  public static void LoginDelete(){
     Console.WriteLine("----- Exclua um registro -----");
     // Ler dados
     Console.Write("Informe o id do login: ");
@@ -101,10 +101,10 @@ class Program{
     // Instanciar a classe Registro
     Login obj = new Login(id, nome, senha, cargo);
     // Excluir o registro no sistema
-    Sistema.LoginExcluir(obj);
+    Sistema.LoginDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void MatriculaInserir(){
+  public static void MatriculaCreate(){
     Console.WriteLine("----- Inserir uma nova matrícula -----");
     // Ler dados
     Console.Write("Informe o id: ");
@@ -119,7 +119,7 @@ class Program{
     Console.Write("Informe o plano: ");
     string plano = (Console.ReadLine());
 
-    LoginListar();
+    LoginRead();
     Console.Write("Informe o id do login: ");
     int idLogin = int.Parse(Console.ReadLine());
 
@@ -127,16 +127,16 @@ class Program{
     // Instanciar a classe Matricula
     Matricula obj = new Matricula(id, nome, idade, pagamento, plano, idLogin);
     // Inserir a matrícula no sistema
-    Sistema.MatriculaInserir(obj);
+    Sistema.MatriculaCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void MatriculaListar(){
+  public static void MatriculaRead(){
     Console.WriteLine("----- Listar as matrículas cadastradas -----");
-    foreach(Matricula obj in Sistema.MatriculaListar())
+    foreach(Matricula obj in Sistema.MatriculaRead())
      Console.WriteLine(obj);
     Console.WriteLine("-------------------------------");
   }
-  public static void MatriculaAtualizar(){
+  public static void MatriculaUpdate(){
     Console.WriteLine("----- Atualize uma matrícula -----");
     // Ler dados
     Console.Write("Informe o id da matrícula: ");
@@ -149,16 +149,16 @@ class Program{
     DateTime pagamento = DateTime.Parse(Console.ReadLine());
     Console.Write("Informe o plano: ");
     string plano = (Console.ReadLine());
-    LoginListar();
+    LoginRead();
     Console.Write("Informe o id do login: ");
     int idLogin = int.Parse(Console.ReadLine());
     // Instanciar a classe Matricula
     Matricula obj = new Matricula(id, nome, idade, pagamento, plano, idLogin);
     // Atualizar o registro no sistema
-    Sistema.MatriculaAtualizar(obj);
+    Sistema.MatriculaUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void MatriculaExcluir(){
+  public static void MatriculaDelete(){
     Console.WriteLine("----- Exclua uma matrícula -----");
     // Ler dados
     Console.Write("Informe o id da matrícula: ");
@@ -166,25 +166,25 @@ class Program{
     // Instanciar a classe Matricula
     Matricula obj = new Matricula(id);
     // Excluir a matrícula no sistema
-    Sistema.MatriculaExcluir(obj);
+    Sistema.MatriculaDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void EventoInserir(){
+  public static void EventoCreate(){
     Console.WriteLine("----- Inserir um novo evento -----");
     Console.Write("Informe a descricao: ");
     string desc = Console.ReadLine();
     Evento obj = new Evento{Descricao = desc};
-    Sistema.EventoInserir(obj);
+    Sistema.EventoCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 
-  public static void EventoListar(){
+  public static void EventoRead(){
     Console.WriteLine("----- Listar os eventos cadastradas -----");
-    foreach(Evento obj in Sistema.EventoListar())
+    foreach(Evento obj in Sistema.EventoRead())
      Console.WriteLine(obj);
     Console.WriteLine("-------------------------------");
   }
-  public static void EventoAtualizar(){
+  public static void EventoUpdate(){
     Console.WriteLine("----- Atualizar um evento -----");
     Console.Write("Informe o id do evento a ser utilizado");
     int id = int.Parse(Console.ReadLine());
@@ -192,14 +192,14 @@ class Program{
     string desc = Console.ReadLine();
     Evento obj = new Evento{Id = id, Descricao = desc};
     //Adicionar o de datetime tbm
-    Sistema.EventoAtualizar(obj);
+    Sistema.EventoUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void EventoExcluir(){
+  public static void EventoDelete(){
     Console.WriteLine("----- Informe o evento a ser excluido -----");
     int id = int.Parse(Console.ReadLine());
     Evento obj = new Evento{Id = id};
-    Sistema.EventoExcluir(obj);
+    Sistema.EventoDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 }
