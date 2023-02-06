@@ -17,10 +17,10 @@ class Program{
       case 6 : MatriculaRead(); break;
       case 7 : MatriculaUpdate(); break;
       case 8 : MatriculaDelete(); break;
-      case 9 : EventoCreate(); break;
-      case 10 : EventoRead(); break;
-      case 11 : EventoUpdate(); break;
-      case 12 : EventoDelete(); break;
+      case 9 : AulaCreate(); break;
+      case 10 : AulaRead(); break;
+      case 11 : AulaUpdate(); break;
+      case 12 : AulaDelete(); break;
       }
       }
       catch(Exception erro){
@@ -41,10 +41,10 @@ class Program{
     Console.WriteLine("06 - Listar matrículas cadastradas");
     Console.WriteLine("07 - Atualizar matrículas cadastradas");
     Console.WriteLine("08 - Excluir matrícula cadastrada");
-    Console.WriteLine("09 - Inserir evento");
-    Console.WriteLine("10 - Listar eventos cadastrados");
-    Console.WriteLine("11 - Atualizar evento");
-    Console.WriteLine("12 - Excluir um evento");
+    Console.WriteLine("09 - Inserir aula");
+    Console.WriteLine("10 - Listar aulas cadastradas");
+    Console.WriteLine("11 - Atualizar aula");
+    Console.WriteLine("12 - Excluir um aula");
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
     Console.WriteLine("Opção: ");
@@ -169,37 +169,51 @@ class Program{
     Sistema.MatriculaDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void EventoCreate(){
-    Console.WriteLine("----- Inserir um novo evento -----");
+  public static void AulaCreate(){
+    Console.WriteLine("----- Inserir uma nova aula -----");
+    Console.Write("Informe o nome: ");
+    string nome = Console.ReadLine();
     Console.Write("Informe a descricao: ");
     string desc = Console.ReadLine();
-    Evento obj = new Evento{Descricao = desc};
-    Sistema.EventoCreate(obj);
+    Console.Write("Informe a data e hora: ");
+    DateTime datahora = DateTime.Parse(Console.ReadLine());
+    int vagaspreenchidas = int.Parse(Console.ReadLine());
+    Console.Write("Informe o número de vagas totais: ");
+    int vagastotais = int.Parse(Console.ReadLine());
+    Aula obj = new Aula{Nome = nome, Descricao = desc, Datahora = datahora, Vagaspreenchidas = vagaspreenchidas, Vagastotais = vagastotais};
+    Sistema.AulaCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 
-  public static void EventoRead(){
-    Console.WriteLine("----- Listar os eventos cadastradas -----");
-    foreach(Evento obj in Sistema.EventoRead())
+  public static void AulaRead(){
+    Console.WriteLine("----- Listar as aulas cadastradas -----");
+    foreach(Aula obj in Sistema.AulaRead())
      Console.WriteLine(obj);
     Console.WriteLine("-------------------------------");
   }
-  public static void EventoUpdate(){
-    Console.WriteLine("----- Atualizar um evento -----");
-    Console.Write("Informe o id do evento a ser utilizado");
+  public static void AulaUpdate(){
+    Console.WriteLine("----- Atualizar uma aula -----");
+    Console.Write("Informe o id da aula a ser utilizada");
     int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe o nome: ");
+    string nome = Console.ReadLine();
     Console.Write("Informe a descricao: ");
     string desc = Console.ReadLine();
-    Evento obj = new Evento{Id = id, Descricao = desc};
+    Console.Write("Informe a data e hora: ");
+    DateTime datahora = DateTime.Parse(Console.ReadLine());
+    int vagaspreenchidas = int.Parse(Console.ReadLine());
+    Console.Write("Informe o número de vagas totais: ");
+    int vagastotais = int.Parse(Console.ReadLine());
+    Aula obj = new Aula{Nome = nome, Descricao = desc, Datahora = datahora, Vagaspreenchidas = vagaspreenchidas, Vagastotais = vagastotais};
     //Adicionar o de datetime tbm
-    Sistema.EventoUpdate(obj);
+    Sistema.AulaUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-  public static void EventoDelete(){
-    Console.WriteLine("----- Informe o evento a ser excluido -----");
+  public static void AulaDelete(){
+    Console.WriteLine("----- Informe a aula a ser excluida -----");
     int id = int.Parse(Console.ReadLine());
-    Evento obj = new Evento{Id = id};
-    Sistema.EventoDelete(obj);
+    Aula obj = new Aula{Id = id};
+    Sistema.AulaDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 }

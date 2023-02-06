@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class Sistema{
   private static List<Login> logins = new List<Login>();
   private static List<Matricula> matriculas = new List<Matricula>();
-  private static List<Evento> eventos = new List<Evento>();
+  private static List<Aula> aulas = new List<Aula>();
 
   public static void LoginCreate(Login obj){
     logins.Add(obj);
@@ -70,43 +70,43 @@ class Sistema{
     }
     // Remove a matricula quando o índice for achado
   }
-  public static void EventoCreate(Evento obj){
-    // Id do serviço
+  public static void AulaCreate(Aula obj){
+    // Id da aula
     int id = 0;
-    foreach(Evento aux in eventos)
+    foreach(Aula aux in aulas)
       if (aux.Id > id){
         id = aux.Id;
       }
     obj.Id = id + 1;
-    eventos.Add(obj);
+    aulas.Add(obj);
   }
 
-  public static List<Evento> EventoRead(){
-    return eventos;
+  public static List<Aula> AulaRead(){
+    return aulas;
   }
 
-  public static Evento EventoRead(int id){
+  public static Aula AulaRead(int id){
     // Olha a lista e pega o id
-    foreach(Evento obj in eventos)
+    foreach(Aula obj in aulas)
       if (obj.Id == id){
         return obj;
       }
     return null;
   }
 
-  public static void EventoUpdate(Evento obj){
+  public static void AulaUpdate(Aula obj){
     // Encontra o servico com o id
-    Evento aux = EventoRead(obj.Id);
+    Aula aux = AulaRead(obj.Id);
     // Atualiza
     if (aux != null){
       aux.Descricao = obj.Descricao;
     }
   }
 
-  public static void EventoDelete(Evento obj){
-    Evento aux = EventoRead(obj.Id);
+  public static void AulaDelete(Aula obj){
+    Aula aux = AulaRead(obj.Id);
     if (aux != null){
-      eventos.Remove(aux);
+      aulas.Remove(aux);
     }
   }
 }
