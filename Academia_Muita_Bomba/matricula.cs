@@ -5,17 +5,15 @@ class Matricula{
   private string nome;
   private int idade;
   private DateTime pagamento;
-  private string plano;
+  private int idPlano;
   private int idRegistro;
-  public Matricula(int id){
-    this.id = id;
-  }
-  public Matricula(int id, string nome, int idade, DateTime pagamento, string plano, int idRegistro){
+  
+  public Matricula(int id, string nome, int idade, DateTime pagamento, int idPlano, int idRegistro){
     this.id = id;
     this.nome = nome;
     this.idade = idade;
     this.pagamento = pagamento;
-    this.plano = plano;
+    this.idPlano = idPlano;
     this.idRegistro = idRegistro;
   }
   public void SetId(int id){
@@ -30,8 +28,8 @@ class Matricula{
   public void SetPagamento(DateTime pagamento){
     this.pagamento = pagamento;
   }
-  public void SetPlano(string plano){
-    this.plano = plano;
+  public void SetIdPlano(int idPlano){
+    this.idPlano = idPlano;
   }
   public void SetIdRegistro(int idRegistro){
     this.idRegistro = idRegistro;
@@ -48,13 +46,13 @@ class Matricula{
   public DateTime GetPagamento(){
     return pagamento;
   }
-  public string GetPlano(){
-    return plano;
+  public int GetIdPlano(){
+    return idPlano;
   }
   public int GetIdRegistro(){
     return idRegistro;
   }
   public override String ToString(){
-    return $"{id} - {nome} - {idade} - {pagamento:dd/MM/yyyy} - {plano}";
+    return $"{id} - {nome} - {idade} - {pagamento:dd/MM/yyyy}";
   }
 }

@@ -21,6 +21,10 @@ class Program{
       case 10 : AulaRead(); break;
       case 11 : AulaUpdate(); break;
       case 12 : AulaDelete(); break;
+      case 13 : PlanoCreate(); break;
+      case 14 : PlanoRead(); break;
+      case 15 : PlanoUpdate(); break;
+      case 16 : PlanoDelete(); break;
       }
       }
       catch(Exception erro){
@@ -45,6 +49,10 @@ class Program{
     Console.WriteLine("10 - Listar aulas cadastradas");
     Console.WriteLine("11 - Atualizar aula");
     Console.WriteLine("12 - Excluir um aula");
+    Console.WriteLine("13 - Inserir plano");
+    Console.WriteLine("14 - Listar planos cadastrados");
+    Console.WriteLine("15 - Atualizar plano");
+    Console.WriteLine("16 - Excluir um plano");
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
     Console.WriteLine("Opção: ");
@@ -84,8 +92,8 @@ class Program{
     string nome = Console.ReadLine();
     // Instanciar a classe Registro
     string senha = Console.ReadLine();
-    string plano = Console.ReadLine();
-    Login obj = new Login(id, nome, senha, plano);
+    string cargo = Console.ReadLine();
+    Login obj = new Login(id, nome, senha, cargo);
     // Atualizar o registro no sistema
     Sistema.LoginUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
@@ -116,8 +124,10 @@ class Program{
     Console.Write("Informe a data de pagamento: ");
     // Se atentar para essa data de pagamento. Acho melhor fazer algo para deixar ela automática.
     DateTime pagamento = DateTime.Parse(Console.ReadLine());
-    Console.Write("Informe o plano: ");
-    string plano = (Console.ReadLine());
+
+    PlanoRead();
+    Console.Write("Informe o id do plano: ");
+    int idPlano = int.Parse(Console.ReadLine());
 
     LoginRead();
     Console.Write("Informe o id do login: ");
@@ -125,7 +135,7 @@ class Program{
 
     
     // Instanciar a classe Matricula
-    Matricula obj = new Matricula(id, nome, idade, pagamento, plano, idLogin);
+    Matricula obj = new Matricula(id, nome, idade, pagamento, idPlano, idLogin);
     // Inserir a matrícula no sistema
     Sistema.MatriculaCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
@@ -147,13 +157,16 @@ class Program{
     int idade = int.Parse(Console.ReadLine());
     Console.Write("Informe a data de pagamento: ");
     DateTime pagamento = DateTime.Parse(Console.ReadLine());
-    Console.Write("Informe o plano: ");
-    string plano = (Console.ReadLine());
+    
+    PlanoRead();
+    Console.Write("Informe o id do plano: ");
+    int idPlano = int.Parse(Console.ReadLine());
+    
     LoginRead();
     Console.Write("Informe o id do login: ");
     int idLogin = int.Parse(Console.ReadLine());
     // Instanciar a classe Matricula
-    Matricula obj = new Matricula(id, nome, idade, pagamento, plano, idLogin);
+    Matricula obj = new Matricula(id, nome, idade, pagamento, idPlano, idLogin);
     // Atualizar o registro no sistema
     Sistema.MatriculaUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
@@ -214,6 +227,47 @@ class Program{
     int id = int.Parse(Console.ReadLine());
     Aula obj = new Aula{Id = id};
     Sistema.AulaDelete(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+
+  public static void PlanoCreate(){
+    Console.WriteLine("----- Inserir um novo plano -----");
+    Console.Write("Informe o nome: ");
+    string nome = Console.ReadLine();
+    Console.Write("Informe a descricao: ");
+    string desc = Console.ReadLine();
+    Console.Write("Informe o preço: ");
+    int preco = int.Parse(Console.ReadLine());
+    Plano obj = new Plano{Nome = nome, Descricao = desc, Preco = preco};
+    Sistema.PlanoCreate(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+
+  public static void PlanoRead(){
+    Console.WriteLine("----- Listar os planos cadastrados -----");
+    foreach(Plano obj in Sistema.PlanoRead())
+     Console.WriteLine(obj);
+    Console.WriteLine("-------------------------------");
+  }
+  public static void PlanoUpdate(){
+    Console.WriteLine("----- Atualizar um plano -----");
+    Console.Write("Informe o id do plano a ser utilizado");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe o nome: ");
+    string nome = Console.ReadLine();
+    Console.Write("Informe a descricao: ");
+    string desc = Console.ReadLine();
+    Console.Write("Informe o preço: ");
+    int preco = int.Parse(Console.ReadLine());
+    Plano obj = new Plano{Nome = nome, Descricao = desc, Preco = preco};
+    Sistema.PlanoUpdate(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void PlanoDelete(){
+    Console.WriteLine("----- Informe o plano a ser excluido -----");
+    int id = int.Parse(Console.ReadLine());
+    Plano obj = new Plano{Id = id};
+    Sistema.PlanoDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 }

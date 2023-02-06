@@ -5,6 +5,7 @@ class Sistema{
   private static List<Login> logins = new List<Login>();
   private static List<Matricula> matriculas = new List<Matricula>();
   private static List<Aula> aulas = new List<Aula>();
+  private static List<Plano> planos = new List<Plano>();
 
   public static void LoginCreate(Login obj){
     logins.Add(obj);
@@ -58,7 +59,7 @@ class Sistema{
       aux.SetNome(obj.GetNome());
       aux.SetIdade(obj.GetIdade());
       aux.SetPagamento(obj.GetPagamento());
-      aux.SetPlano(obj.GetPlano());
+      aux.SetIdPlano(obj.GetIdPlano());
       aux.SetIdRegistro(obj.GetIdRegistro());
     }
   }
@@ -107,6 +108,46 @@ class Sistema{
     Aula aux = AulaRead(obj.Id);
     if (aux != null){
       aulas.Remove(aux);
+    }
+  }
+
+  public static void PlanoCreate(Plano obj){
+    // Id do plano
+    int id = 0;
+    foreach(Plano aux in planos)
+      if (aux.Id > id){
+        id = aux.Id;
+      }
+    obj.Id = id + 1;
+    planos.Add(obj);
+  }
+
+  public static List<Plano> PlanoRead(){
+    return planos;
+  }
+
+  public static Plano PlanoRead(int id){
+    // Olha a lista e pega o id
+    foreach(Plano obj in planos)
+      if (obj.Id == id){
+        return obj;
+      }
+    return null;
+  }
+
+  public static void PlanoUpdate(Plano obj){
+    // Encontra o servico com o id
+    Plano aux = PlanoRead(obj.Id);
+    // Atualiza
+    if (aux != null){
+      aux.Descricao = obj.Descricao;
+    }
+  }
+
+  public static void PlanoDelete(Plano obj){
+    Plano aux = PlanoRead(obj.Id);
+    if (aux != null){
+      planos.Remove(aux);
     }
   }
 }
