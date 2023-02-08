@@ -6,34 +6,34 @@ class Program{
     int op = 0;
     do{
       try{
-      // O comando try junto com o catch mais abaixo, está sendo utilizado na criação de um bloco de erro. Caso o usuário erre o input, o menu enviará o usuário ao início.
-      op = Menu();
-      switch(op){
-      case 1 : LoginCreate(); break;
-      case 2 : LoginRead(); break;
-      case 3 : LoginUpdate(); break;
-      case 4 : LoginDelete(); break;
-      case 5 : MatriculaCreate(); break;
-      case 6 : MatriculaRead(); break;
-      case 7 : MatriculaUpdate(); break;
-      case 8 : MatriculaDelete(); break;
-      case 9 : AulaCreate(); break;
-      case 10 : AulaRead(); break;
-      case 11 : AulaUpdate(); break;
-      case 12 : AulaDelete(); break;
-      case 13 : PlanoCreate(); break;
-      case 14 : PlanoRead(); break;
-      case 15 : PlanoUpdate(); break;
-      case 16 : PlanoDelete(); break;
-      }
+        // O comando try junto com o catch mais abaixo, está sendo utilizado na criação de um bloco de erro. Caso o usuário erre o input, o menu enviará o usuário ao início.
+        op = Menu();
+        switch(op){
+        case 1 : LoginCreate(); break;
+        case 2 : LoginRead(); break;
+        case 3 : LoginUpdate(); break;
+        case 4 : LoginDelete(); break;
+        case 5 : MatriculaCreate(); break;
+        case 6 : MatriculaRead(); break;
+        case 7 : MatriculaUpdate(); break;
+        case 8 : MatriculaDelete(); break;
+        case 9 : AulaCreate(); break;
+        case 10 : AulaRead(); break;
+        case 11 : AulaUpdate(); break;
+        case 12 : AulaDelete(); break;
+        case 13 : PlanoCreate(); break;
+        case 14 : PlanoRead(); break;
+        case 15 : PlanoUpdate(); break;
+        case 16 : PlanoDelete(); break;
+        }
       }
       catch(Exception erro){
         op = -1;
         Console.WriteLine("Erro: " + erro.Message);
         Console.WriteLine("Tente novamente.");
       }
-  } while (op != 0);
-    }
+    } while (op != 0);
+  }
   public static int Menu(){
     Console.WriteLine();
     Console.WriteLine("---- Escolha uma opção. ----");
