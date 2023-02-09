@@ -45,18 +45,29 @@ class Program{
     string tlogin = Console.ReadLine();
     Console.WriteLine("---- Agora, sua senha. ----");
     string tsenha = Console.ReadLine();
+    // Checa se o login existe
+    if(list.Any(tlogin)){
+      // Checa se a senha bate com o login
+      if(listdotloginsenha.Any(tsenha)){
+        // Direciona para o menu de acordo com o cargo
+        switch(blabla.cargo) {
+          case "admin":
+            MenuAdmin();
+            break;
+          case "aluno":
+            MenuAluno();
+            break;
+        }
+      }else{
+        Console.WriteLine("Senha inválida");
+      }else{
+        Console.WriteLine("Login inválido");
+      }
+    };
     
   }
 
   public static int MenuAluno() {
-    Console.WriteLine("00 - Finalizar o sistema");
-  }
-
-  public static int MenuPersonal() {
-    Console.WriteLine("09 - Inserir aula");
-    Console.WriteLine("10 - Listar aulas cadastradas");
-    Console.WriteLine("11 - Atualizar aula");
-    Console.WriteLine("12 - Excluir um aula");
     Console.WriteLine("00 - Finalizar o sistema");
   }
 
