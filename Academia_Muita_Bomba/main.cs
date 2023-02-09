@@ -2,7 +2,7 @@ using System;
 
 class Program{
   public static void Main(){
-    Console.WriteLine("Bem-vindo a Academia Mega Bomba");
+    Console.WriteLine("Bem-vindo a Academia Muita Bomba");
     int op = 0;
     do{
       try{
@@ -34,6 +34,54 @@ class Program{
       }
     } while (op != 0);
   }
+
+  public static int Login(){
+    Console.WriteLine();
+    Console.WriteLine("---- Olá! Bem vindo à academia MuitaBomba! ----");
+    Console.WriteLine("---- Por favor, insira seu login. ----");
+    string tlogin = Console.ReadLine();
+    Console.WriteLine("---- Agora, sua senha. ----");
+    string tsenha = Console.ReadLine();
+    
+  }
+
+  public static int MenuAluno() {
+    Console.WriteLine("00 - Finalizar o sistema");
+  }
+
+  public static int MenuPersonal() {
+    Console.WriteLine("09 - Inserir aula");
+    Console.WriteLine("10 - Listar aulas cadastradas");
+    Console.WriteLine("11 - Atualizar aula");
+    Console.WriteLine("12 - Excluir um aula");
+    Console.WriteLine("00 - Finalizar o sistema");
+  }
+
+  public static int MenuAdmin() {
+    Console.WriteLine("---- Escolha uma opção. ----");
+    Console.WriteLine("01 - Inserir novo login");
+    Console.WriteLine("02 - Listar logins cadastrados");
+    Console.WriteLine("03 - Atualizar logins cadastrados");
+    Console.WriteLine("04 - Excluir login cadastrado");
+    Console.WriteLine("05 - Inserir nova matrícula");
+    Console.WriteLine("06 - Listar matrículas cadastradas");
+    Console.WriteLine("07 - Atualizar matrículas cadastradas");
+    Console.WriteLine("08 - Excluir matrícula cadastrada");
+
+    Console.WriteLine("09 - Inserir aula");
+    Console.WriteLine("10 - Listar aulas cadastradas");
+    Console.WriteLine("11 - Atualizar aula");
+    Console.WriteLine("12 - Excluir um aula");
+
+    Console.WriteLine("13 - Inserir plano");
+    Console.WriteLine("14 - Listar planos cadastrados");
+    Console.WriteLine("15 - Atualizar plano");
+    Console.WriteLine("16 - Excluir um plano");
+    Console.WriteLine("00 - Finalizar o sistema");
+    Console.WriteLine("-----------------------");
+  }
+
+  // Talvez falte aqui também a inscrição em plano :c
   public static int Menu(){
     Console.WriteLine();
     Console.WriteLine("---- Escolha uma opção. ----");
@@ -45,10 +93,12 @@ class Program{
     Console.WriteLine("06 - Listar matrículas cadastradas");
     Console.WriteLine("07 - Atualizar matrículas cadastradas");
     Console.WriteLine("08 - Excluir matrícula cadastrada");
+
     Console.WriteLine("09 - Inserir aula");
     Console.WriteLine("10 - Listar aulas cadastradas");
     Console.WriteLine("11 - Atualizar aula");
     Console.WriteLine("12 - Excluir um aula");
+
     Console.WriteLine("13 - Inserir plano");
     Console.WriteLine("14 - Listar planos cadastrados");
     Console.WriteLine("15 - Atualizar plano");
