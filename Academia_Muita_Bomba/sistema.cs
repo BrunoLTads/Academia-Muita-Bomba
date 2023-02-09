@@ -60,7 +60,7 @@ class Sistema{
       aux.SetIdade(obj.GetIdade());
       aux.SetPagamento(obj.GetPagamento());
       aux.SetIdPlano(obj.GetIdPlano());
-      aux.SetIdRegistro(obj.GetIdRegistro());
+      aux.SetIdLogin(obj.GetIdLogin());
     }
   }
   public static void MatriculaDelete(Matricula obj){

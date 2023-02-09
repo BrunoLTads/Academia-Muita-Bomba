@@ -1,7 +1,10 @@
 using System;
+using System.Globalization;
+using System.Threading;
 
 class Program{
   public static void Main(){
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
     Console.WriteLine("Bem-vindo a Academia Muita Bomba");
     int op = 0;
     do{
