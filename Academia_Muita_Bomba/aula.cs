@@ -8,6 +8,6 @@ class Aula{
   public int Vagaspreenchidas{get;set;}
   public int Vagastotais{get;set;}
   public override string ToString(){
-    return $"{Id} {Nome} {Descricao} {Datahora} {Vagaspreenchidas}/{Vagastotais}";
+    return $"{Id} {Nome} {Descricao} {Datahora: dd/MM/yyyy HH:mm} {Vagaspreenchidas}/{Vagastotais}";
   }
 }
