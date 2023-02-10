@@ -68,7 +68,11 @@ class Program{
   }
 
   public static int MenuAluno() {
+    Console.WriteLine("---- Escolha uma opção. ----");
     Console.WriteLine("00 - Finalizar o sistema");
+    Console.WriteLine("01 - Visualizar aulas");
+    Console.WriteLine("02 - Fazer inscrição");
+    Console.WriteLine("03 - Visualizar informações (matrícula)");
   }
 
   public static int MenuAdmin() {
