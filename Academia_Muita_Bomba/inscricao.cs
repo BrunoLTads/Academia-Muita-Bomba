@@ -2,19 +2,19 @@ using System;
 
 class Inscricao{
   private int id;
-  private int idAluno;
+  private int idLogin;
   private int idAula;
   
   public Inscricao(int id, int idAluno, int idAula){
     this.id = id;
-    this.idAluno = idAluno;
+    this.idLogin = idLogin;
     this.idAula = idAula;
   }
   public void SetId(int id){
     this.id = id;
   }
-  public void SetIdAluno(int idAluno){
-    this.idAluno = idAluno;
+  public void SetIdLogin(int idLogin){
+    this.idLogin = idLogin;
   }
    public void SetIdAula(int idAula){
     this.idAula = idAula;
@@ -22,13 +22,13 @@ class Inscricao{
   public int GetId(){
     return id;
   }
-  public int GetIdAluno(){
-    return idAluno;
+  public int GetIdLogin(){
+    return idLogin;
   }
   public int GetIdAula(){
     return idAula;
   }
   public override String ToString(){
-    return $"{id} - {idAluno} - {idAula}";
+    return $"{id} - {idLogin} - {idAula}";
   }
 }

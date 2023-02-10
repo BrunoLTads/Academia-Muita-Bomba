@@ -5,6 +5,17 @@ using System.Threading;
 class Program{
   public static void Main(){
     Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+    
+    try{
+      Sistema.ArquivosAbrir();
+    }
+    catch (Exception erro){
+      Console.WriteLine(erro.Message);
+    }
+
+
+
+    
     Console.WriteLine("Bem-vindo a Academia Muita Bomba");
     int op = 0;
     do{
@@ -36,6 +47,13 @@ class Program{
         Console.WriteLine("Tente novamente.");
       }
     } while (op != 0);
+
+    try{
+      Sistema.ArquivosSalvar();
+    }
+    catch (Exception erro){
+      Console.WriteLine(erro.Message);
+    }
   }
 
   public static int Login(){
@@ -60,20 +78,16 @@ class Program{
         }
       }else{
         Console.WriteLine("Senha inválida");
-      }else{
-        Console.WriteLine("Login inválido");
-      }
+      //}else{                                Deixei isso em comentário para ignorar um erro
+      //  Console.WriteLine("Login inválido");
+      //}
     };
     
   }
 
-  public static int MenuAluno() {
-    Console.WriteLine("---- Escolha uma opção. ----");
-    Console.WriteLine("00 - Finalizar o sistema");
-    Console.WriteLine("01 - Visualizar aulas");
-    Console.WriteLine("02 - Fazer inscrição");
-    Console.WriteLine("03 - Visualizar informações (matrícula)");
-  }
+  //public static int MenuAluno() {
+  //  Console.WriteLine("00 - Finalizar o sistema");
+  //}
 
   public static int MenuAdmin() {
     Console.WriteLine("---- Escolha uma opção. ----");

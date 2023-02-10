@@ -1,4 +1,4 @@
-run = "mcs -out:main.exe 'Academia_Muita_Bomba/main.cs' 'Academia_Muita_Bomba/login.cs' 'Academia_Muita_Bomba/matricula.cs' 'Academia_Muita_Bomba/sistema.cs' 'Academia_Muita_Bomba/aula.cs' 'Academia_Muita_Bomba/plano.cs' 'Academia_Muita_Bomba/inscricao.cs' ; mono main.exe"
+run = "mcs -out:main.exe 'Academia_Muita_Bomba/main.cs' 'Academia_Muita_Bomba/login.cs' 'Academia_Muita_Bomba/matricula.cs' 'Academia_Muita_Bomba/sistema.cs' 'Academia_Muita_Bomba/aula.cs' 'Academia_Muita_Bomba/plano.cs' 'Academia_Muita_Bomba/inscricao.cs' 'Academia_Muita_Bomba/arquivo.cs' ; mono main.exe"
 
 hidden = ["bin", "obj"]
 

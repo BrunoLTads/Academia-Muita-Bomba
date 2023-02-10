@@ -3,5 +3,7 @@ Projeto da disciplina de POO dedicado à construção de um sistema simples aná
 
 ### A fazer:
 - Criar operação de login
-- Divisão dos menus baseada no login (admin e cliente)
+- Divisão dos menus baseada no login (admin, personal ou cliente)
+- Criar classe de inscrição em aulas
 - Atualizar gráficos UML
+- Atualizar nomenclaturas de operações baseadas nos grpaficos UML

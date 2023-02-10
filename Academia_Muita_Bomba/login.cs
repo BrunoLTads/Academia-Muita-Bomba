@@ -1,10 +1,13 @@
 using System;
 
-class Login{
+public class Login{
   private int id {get; set;}
   private string nome {get; set;}
   private string senha {get;set;}
   private string cargo {get;set;}
+
+
+  
   public Login(int id, string nome, string senha, string cargo){
     this.id = id;
     this.nome = nome;

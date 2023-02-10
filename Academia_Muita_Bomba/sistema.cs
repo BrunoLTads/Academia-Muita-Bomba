@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.IO;
+using System.Text;
 
 class Sistema{
   private static List<Login> logins = new List<Login>();
@@ -7,6 +10,45 @@ class Sistema{
   private static List<Aula> aulas = new List<Aula>();
   private static List<Plano> planos = new List<Plano>();
 
+
+  public static void ArquivosAbrir(){
+    Arquivo<List<Login>> f1 = new Arquivo<List<Login>>();
+    logins = f1.Abrir("./logins.xml");
+
+    Arquivo<List<Matricula>> f2 = new Arquivo<List<Matricula>>();
+    matriculas = f2.Abrir("./matriculas.xml");
+
+    Arquivo<List<Aula>> f3 = new Arquivo<List<Aula>>();
+    aulas = f3.Abrir("./aulas.xml");
+
+    Arquivo<List<Plano>> f4 = new Arquivo<List<Plano>>();
+    planos = f4.Abrir("./planos.xml");
+    
+    //XmlSerializer xml = new XmlSerializer(typeof(List<Login>));
+    //StreamReader f = new StreamReader("./logins.xml", Encoding.Default);
+    //logins = (List<Login>) ()xml.Deserialize(f);
+    //f.Close();
+  }
+  public static void ArquivosSalvar(){
+    Arquivo<List<Login>> f1 = new Arquivo<List<Login>>();
+    f1.Salvar("./logins.xml", logins);
+
+    Arquivo<List<Matricula>> f2 = new Arquivo<List<Matricula>>();
+    f2.Salvar("./matriculas.xml", matriculas);
+
+    Arquivo<List<Aula>> f3 = new Arquivo<List<Aula>>();
+    f3.Salvar("./aulas.xml", aulas);
+
+    Arquivo<List<Plano>> f4 = new Arquivo<List<Plano>>();
+    f4.Salvar("./planos.xml", planos);
+    
+    
+    //XmlSerializer xml = new XmlSerializer(typeof(List<Login>));
+    //StreamWriter f = new StreamWriter("./logins.xml", false, Encoding.Default);
+    //logins = (List<Login>) xml.Serialize(f, LoginRead());
+    //f.Close();
+  }
+  
   public static void LoginCreate(Login obj){
     logins.Add(obj);
   }

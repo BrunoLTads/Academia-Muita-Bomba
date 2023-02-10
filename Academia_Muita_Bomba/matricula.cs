@@ -1,13 +1,37 @@
 using System;
 
-class Matricula{
+public class Matricula{
   private int id;
   private string nome;
   private int idade;
   private DateTime pagamento;
   private int idPlano;
   private int idLogin;
-  
+
+  public int Id{
+  get => id;
+  set => id = value;
+}
+  public string Nome{
+  get => nome;
+  set => nome = value;
+}
+  public int Idade{
+  get => idade;
+  set => idade = value;
+}
+  public DateTime pagamento{
+  get => pagamento;
+  set => pagamento = value;
+}
+  public int IdPlano{
+  get => idPlano;
+  set => idPlano = value;
+}
+  public int IdLogin{
+  get => idLogin;
+  set => idLogin = value;
+}
   public Matricula(int id, string nome, int idade, DateTime pagamento, int idPlano, int idLogin){
     this.id = id;
     this.nome = nome;
