@@ -14,14 +14,13 @@ class Program{
     }
 
 
-
-    
     Console.WriteLine("Bem-vindo a Academia Muita Bomba");
     int op = 0;
+    
     do{
       try{
-        // O comando try junto com o catch mais abaixo, está sendo utilizado na criação de um bloco de erro. Caso o usuário erre o input, o menu enviará o usuário ao início.
         op = Menu();
+        // O comando try junto com o catch mais abaixo, está sendo utilizado na criação de um bloco de erro. Caso o usuário erre o input, o menu enviará o usuário ao início.
         switch(op){
         case 1 : LoginCreate(); break;
         case 2 : LoginRead(); break;
@@ -56,6 +55,12 @@ class Program{
     }
   }
 
+  public static int Menu(){
+    Console.WriteLine("1 Inserir login");
+    int op = int.Parse(Console.ReadLine());
+    return op;
+  }
+
   public static int Login(){
     Console.WriteLine();
     Console.WriteLine("---- Olá! Bem vindo à academia MuitaBomba! ----");
@@ -78,16 +83,16 @@ class Program{
         }
       }else{
         Console.WriteLine("Senha inválida");
-      //}else{                                Deixei isso em comentário para ignorar um erro
-      //  Console.WriteLine("Login inválido");
-      //}
+      }else{                                Deixei isso em comentário para ignorar um erro
+        Console.WriteLine("Login inválido");
+      }
     };
     
   }
 
-  //public static int MenuAluno() {
-  //  Console.WriteLine("00 - Finalizar o sistema");
-  //}
+  public static int MenuAluno() {
+    Console.WriteLine("00 - Finalizar o sistema");
+  }
 
   public static int MenuAdmin() {
     Console.WriteLine("---- Escolha uma opção. ----");
@@ -141,7 +146,7 @@ class Program{
     int op = int.Parse(Console.ReadLine());
     Console.WriteLine("");
     return op;
-  }
+  
   public static void LoginCreate(){
     Console.WriteLine("----- Inserir um novo login -----");
     // Ler dados
@@ -266,6 +271,8 @@ class Program{
   }
   public static void AulaCreate(){
     Console.WriteLine("----- Inserir uma nova aula -----");
+    Console.Write("Informe o id: ");
+    int id = int.Parse(Console.ReadLine());
     Console.Write("Informe o nome: ");
     string nome = Console.ReadLine();
     Console.Write("Informe a descricao: ");
@@ -275,7 +282,7 @@ class Program{
     int vagaspreenchidas = int.Parse(Console.ReadLine());
     Console.Write("Informe o número de vagas totais: ");
     int vagastotais = int.Parse(Console.ReadLine());
-    Aula obj = new Aula{Nome = nome, Descricao = desc, Datahora = datahora, Vagaspreenchidas = vagaspreenchidas, Vagastotais = vagastotais};
+    Aula obj = new Aula{Id = id, Nome = nome, Descricao = desc, Datahora = datahora, Vagaspreenchidas = vagaspreenchidas, Vagastotais = vagastotais};
     Sistema.AulaCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
@@ -299,7 +306,7 @@ class Program{
     int vagaspreenchidas = int.Parse(Console.ReadLine());
     Console.Write("Informe o número de vagas totais: ");
     int vagastotais = int.Parse(Console.ReadLine());
-    Aula obj = new Aula{Nome = nome, Descricao = desc, Datahora = datahora, Vagaspreenchidas = vagaspreenchidas, Vagastotais = vagastotais};
+    Aula obj = new Aula{Id = id, Nome = nome, Descricao = desc, Datahora = datahora, Vagaspreenchidas = vagaspreenchidas, Vagastotais = vagastotais};
     //Adicionar o de datetime tbm
     Sistema.AulaUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
@@ -314,13 +321,15 @@ class Program{
 
   public static void PlanoCreate(){
     Console.WriteLine("----- Inserir um novo plano -----");
+    Console.Write("Informe o id: ");
+    int id = int.Parse(Console.ReadLine());
     Console.Write("Informe o nome: ");
     string nome = Console.ReadLine();
     Console.Write("Informe a descricao: ");
     string desc = Console.ReadLine();
     Console.Write("Informe o preço: ");
     int preco = int.Parse(Console.ReadLine());
-    Plano obj = new Plano{Nome = nome, Descricao = desc, Preco = preco};
+    Plano obj = new Plano{Id = id, Nome = nome, Descricao = desc, Preco = preco};
     Sistema.PlanoCreate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
@@ -341,7 +350,7 @@ class Program{
     string desc = Console.ReadLine();
     Console.Write("Informe o preço: ");
     int preco = int.Parse(Console.ReadLine());
-    Plano obj = new Plano{Nome = nome, Descricao = desc, Preco = preco};
+    Plano obj = new Plano{Id = id, Nome = nome, Descricao = desc, Preco = preco};
     Sistema.PlanoUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }

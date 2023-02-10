@@ -1,12 +1,32 @@
 using System;
 
 public class Login{
-  private int id {get; set;}
-  private string nome {get; set;}
-  private string senha {get;set;}
-  private string cargo {get;set;}
+  private int id;
+  private string nome;
+  private string senha;
+  private string cargo;
 
+  public int Id{
+    get => id;
+    set => id = value;
+  }
+  public string Nome{
+    get => nome;
+    set => nome = value;
+  }
+  public string Senha{
+    get => senha;
+    set => senha = value;
+  }
+  public string Cargo{
+    get => cargo;
+    set => cargo = value;
+  }
 
+  public Login(){ }
+  public Login(int id){
+    this.id = id;
+    }
   
   public Login(int id, string nome, string senha, string cargo){
     this.id = id;

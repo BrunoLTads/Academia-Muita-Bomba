@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLogin xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Login>
+    <Id>1</Id>
+    <Nome>Bruno</Nome>
+    <Senha>12345</Senha>
+    <Cargo>Admin</Cargo>
+  </Login>
+  <Login>
+    <Id>2</Id>
+    <Nome>Rômulo</Nome>
+    <Senha>1234567</Senha>
+    <Cargo>Admin</Cargo>
+  </Login>
+</ArrayOfLogin>

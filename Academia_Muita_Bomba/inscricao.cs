@@ -5,7 +5,7 @@ class Inscricao{
   private int idLogin;
   private int idAula;
   
-  public Inscricao(int id, int idAluno, int idAula){
+  public Inscricao(int id, int idLogin, int idAula){
     this.id = id;
     this.idLogin = idLogin;
     this.idAula = idAula;

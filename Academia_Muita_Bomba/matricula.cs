@@ -20,10 +20,6 @@ public class Matricula{
   get => idade;
   set => idade = value;
 }
-  public DateTime pagamento{
-  get => pagamento;
-  set => pagamento = value;
-}
   public int IdPlano{
   get => idPlano;
   set => idPlano = value;
@@ -32,6 +28,9 @@ public class Matricula{
   get => idLogin;
   set => idLogin = value;
 }
+
+  public Matricula(){ }
+  
   public Matricula(int id, string nome, int idade, DateTime pagamento, int idPlano, int idLogin){
     this.id = id;
     this.nome = nome;
@@ -40,6 +39,11 @@ public class Matricula{
     this.idPlano = idPlano;
     this.idLogin = idLogin;
   }
+
+  public Matricula(int id){
+    this.id = id;
+  }
+  
   public void SetId(int id){
     this.id = id;
   }

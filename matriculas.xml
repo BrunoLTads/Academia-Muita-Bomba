@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMatricula xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Matricula>
+    <Id>1</Id>
+    <Nome>Bruno</Nome>
+    <Idade>20</Idade>
+    <IdPlano>1</IdPlano>
+    <IdLogin>1</IdLogin>
+  </Matricula>
+</ArrayOfMatricula>
