@@ -83,12 +83,11 @@ class Program{
         }
       }else{
         Console.WriteLine("Senha inválida");
-      }else{                                Deixei isso em comentário para ignorar um erro
+      }else{
         Console.WriteLine("Login inválido");
       }
     };
     
-  }
 
   public static int MenuAluno() {
     Console.WriteLine("00 - Finalizar o sistema");
@@ -146,6 +145,7 @@ class Program{
     int op = int.Parse(Console.ReadLine());
     Console.WriteLine("");
     return op;
+    }
   
   public static void LoginCreate(){
     Console.WriteLine("----- Inserir um novo login -----");
