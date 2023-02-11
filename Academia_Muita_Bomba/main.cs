@@ -81,12 +81,15 @@ class Program{
             MenuAluno();
             break;
         }
+
       }else{
         Console.WriteLine("Senha inválida");
-      }else{
-        Console.WriteLine("Login inválido");
       }
-    };
+      
+    }else{
+        Console.WriteLine("Login inválido");
+    }
+
     
 
   public static int MenuAluno() {
