@@ -9,6 +9,7 @@ class Sistema{
   private static List<Matricula> matriculas = new List<Matricula>();
   private static List<Aula> aulas = new List<Aula>();
   private static List<Plano> planos = new List<Plano>();
+  private static List<Inscricao> inscricoes = new List<Inscricao>();
 
 
   public static void ArquivosAbrir(){
@@ -23,6 +24,9 @@ class Sistema{
 
     Arquivo<List<Plano>> f4 = new Arquivo<List<Plano>>();
     planos = f4.Abrir("./planos.xml");
+
+    Arquivo<List<Inscricao>> f5 = new Arquivo<List<Inscricao>>();
+    inscricoes = f5.Abrir("./inscricoes.xml");
     
     //XmlSerializer xml = new XmlSerializer(typeof(List<Login>));
     //StreamReader f = new StreamReader("./logins.xml", Encoding.Default);
@@ -41,6 +45,9 @@ class Sistema{
 
     Arquivo<List<Plano>> f4 = new Arquivo<List<Plano>>();
     f4.Salvar("./planos.xml", planos);
+
+    Arquivo<List<Inscricao>> f5 = new Arquivo<List<Inscricao>>();
+    f5.Salvar("./inscricoes.xml", inscricoes);
     
     
     //XmlSerializer xml = new XmlSerializer(typeof(List<Login>));
@@ -191,5 +198,46 @@ class Sistema{
     if (aux != null){
       planos.Remove(aux);
     }
+  }
+
+public static void InscricaoCreate(Inscricao obj){
+    inscricoes.Add(obj);
+    }
+  public static List<Inscricao> InscricaoRead(){
+    return inscricoes;
+    }
+  public static List<Inscricao> InscricaoListar(Login login){
+    List<Inscricao> r = new List<Inscricao>();
+    foreach(Inscricao obj in inscricoes)
+      if (obj.GetIdLogin() == login.Id)
+        r.Add(obj);
+        return r; 
+  }
+  
+  public static Inscricao InscricaoRead(int id){
+    // Retornar a inscrição do id informado
+    foreach(Inscricao obj in inscricoes)
+    if (obj.GetId() == id){
+      return obj;
+    }
+    return null;
+    }
+  public static void InscricaoUpdate(Inscricao obj){
+    // Buscar inscrição informada
+    Inscricao aux = InscricaoRead(obj.GetId());
+    // Atualizar atributos da inscrição
+    if (aux != null){
+      aux.SetId(obj.GetId());
+      aux.SetIdLogin(obj.GetIdLogin());
+      aux.SetIdAula(obj.GetIdAula());
+    }
+  }
+  public static void InscricaoDelete(Inscricao obj){
+    //Encontrar o indíce do obj na lista
+    Inscricao aux = InscricaoRead(obj.GetId());
+    if (aux != null){
+      inscricoes.Remove(aux);
+    }
+    // Remove a inscrição quando o índice for achado
   }
 }

@@ -38,6 +38,10 @@ class Program{
         case 14 : PlanoRead(); break;
         case 15 : PlanoUpdate(); break;
         case 16 : PlanoDelete(); break;
+        case 17: InscricaoCreate(); break;
+        case 18: InscricaoRead(); break;
+        case 19: InscricaoUpdate(); break;
+        case 20: InscricaoDelete(); break;
         }
       }
       catch(Exception erro){
@@ -146,6 +150,12 @@ class Program{
     Console.WriteLine("14 - Listar planos cadastrados");
     Console.WriteLine("15 - Atualizar plano");
     Console.WriteLine("16 - Excluir um plano");
+
+    Console.WriteLine("17 - Inserir inscrição");
+    Console.WriteLine("18 - Listar inscrições");
+    Console.WriteLine("19 - Atualizar uma inscrição");
+    Console.WriteLine("20 - Excluir uma inscrição");
+    
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
     Console.WriteLine("Opção: ");
@@ -366,6 +376,64 @@ class Program{
     int id = int.Parse(Console.ReadLine());
     Plano obj = new Plano{Id = id};
     Sistema.PlanoDelete(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+
+  public static void InscricaoCreate(){
+    Console.WriteLine("----- Inserir uma nova inscrição -----");
+    // Ler dados
+    Console.Write("Informe o id da inscrição: ");
+    int id = int.Parse(Console.ReadLine());
+
+    LoginRead();
+    Console.Write("Informe o id do login: ");
+    int idLogin = int.Parse(Console.ReadLine());
+
+    AulaRead();
+    Console.Write("Informe o id da aula: ");
+    int idAula = int.Parse(Console.ReadLine());
+
+    
+    // Instanciar a classe Inscricao
+    Inscricao obj = new Inscricao(id, idLogin, idAula);
+    // Inserir a matrícula no sistema
+    Sistema.InscricaoCreate(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void InscricaoRead(){
+    Console.WriteLine("----- Listar as matrículas cadastradas -----");
+    foreach(Inscricao obj in Sistema.InscricaoRead())
+     Console.WriteLine(obj);
+    Console.WriteLine("-------------------------------");
+  }
+  public static void InscricaoUpdate(){
+    Console.WriteLine("----- Atualize uma inscrição -----");
+    // Ler dados
+    Console.Write("Informe o id da inscrição: ");
+    int id = int.Parse(Console.ReadLine());
+    LoginRead();
+    Console.Write("Informe o id do login: ");
+    int idLogin = int.Parse(Console.ReadLine());
+
+    AulaRead();
+    Console.Write("Informe o id da aula: ");
+    int idAula = int.Parse(Console.ReadLine());
+    
+    // Instanciar a classe Inscricao
+    Inscricao obj = new Inscricao(id, idLogin, idAula);
+    // Atualizar o registro no sistema
+    Sistema.InscricaoUpdate(obj);
+    Console.WriteLine("----- Operação realizada com sucesso -----");
+  }
+  public static void InscricaoDelete(){
+    Console.WriteLine("----- Exclua uma inscrição -----");
+    // Ler dados
+    Console.Write("Informe o id da inscrição: ");
+    int id = int.Parse(Console.ReadLine());
+    // Instanciar a classe Inscricao
+    Inscricao obj = new Inscricao(id);
+    // Excluir a inscrição no sistema
+    Sistema.InscricaoDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
 }

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfInscricao xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Inscricao>
+    <Id>1</Id>
+    <IdLogin>1</IdLogin>
+    <IdAula>1</IdAula>
+  </Inscricao>
+</ArrayOfInscricao>
