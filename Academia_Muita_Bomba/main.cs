@@ -2,7 +2,14 @@ using System;
 using System.Globalization;
 using System.Threading;
 
+/*
+  O sistema de login do IFPet é feito usando 
+*/
+
 class Program{
+
+  private static Login clienteLogin = null;
+
   public static void Main(){
     Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
     
@@ -14,42 +21,90 @@ class Program{
     }
 
 
-    Console.WriteLine("Bem-vindo a Academia Muita Bomba");
+    Console.WriteLine("Bem-vindo à Academia Muita Bomba!\n");
+
+    // define a operação a ser feita pelo usuário
     int op = 0;
-    
+    // define o tipo de usuário (admin ou cliente/aluno)
+    int perfil = 0;
+
     do{
       try{
-        op = Menu();
-        // O comando try junto com o catch mais abaixo, está sendo utilizado na criação de um bloco de erro. Caso o usuário erre o input, o menu enviará o usuário ao início.
-        switch(op){
-        case 1 : LoginCreate(); break;
-        case 2 : LoginRead(); break;
-        case 3 : LoginUpdate(); break;
-        case 4 : LoginDelete(); break;
-        case 5 : MatriculaCreate(); break;
-        case 6 : MatriculaRead(); break;
-        case 7 : MatriculaUpdate(); break;
-        case 8 : MatriculaDelete(); break;
-        case 9 : AulaCreate(); break;
-        case 10 : AulaRead(); break;
-        case 11 : AulaUpdate(); break;
-        case 12 : AulaDelete(); break;
-        case 13 : PlanoCreate(); break;
-        case 14 : PlanoRead(); break;
-        case 15 : PlanoUpdate(); break;
-        case 16 : PlanoDelete(); break;
-        case 17: InscricaoCreate(); break;
-        case 18: InscricaoRead(); break;
-        case 19: InscricaoUpdate(); break;
-        case 20: InscricaoDelete(); break;
+        // OLÁ AMIGO!
+        /* O if abaixo é a estrutura principal do login, que vai levar aos
+           respectivos menus.
+        */
+
+        // Não selecionou o perfil ainda, vai mostrar o menu de user
+        if (perfil == 0) {
+          op = 0;
+          perfil = MenuUsuario();
+
+        // Selecionou o perfil de admin
+        }else if(perfil == 1) {
+          op = MenuAdmin();
+          /* O comando try junto com o catch mais abaixo está sendo utilizado na criação de um bloco de erro.
+           Caso o usuário erre o input, o menu enviará o usuário ao início. */
+          switch(op){
+          case 1 : LoginCreate(); break;
+          case 2 : LoginRead(); break;
+          case 3 : LoginUpdate(); break;
+          case 4 : LoginDelete(); break;
+          case 5 : MatriculaCreate(); break;
+          case 6 : MatriculaRead(); break;
+          case 7 : MatriculaUpdate(); break;
+          case 8 : MatriculaDelete(); break;
+          case 9 : AulaCreate(); break;
+          case 10 : AulaRead(); break;
+          case 11 : AulaUpdate(); break;
+          case 12 : AulaDelete(); break;
+          case 13 : PlanoCreate(); break;
+          case 14 : PlanoRead(); break;
+          case 15 : PlanoUpdate(); break;
+          case 16 : PlanoDelete(); break;
+          case 17: InscricaoCreate(); break;
+          case 18: InscricaoRead(); break;
+          case 19: InscricaoUpdate(); break;
+          case 20: InscricaoDelete(); break;
+          case 99: perfil = 0; break;
+          }
+
+        // Selecionou o perfil de cliente, mas não está logado
+        }else if(perfil == 2 && clienteLogin == null){
+          perfil = Login();
+
+        // Selecionou o perfil de cliente e está logado
+        }else if(perfil == 2 && clienteLogin != null){
+          /* Nota: nos vídeos do IFPet, Gilbert trata ClienteLogin como a função
+             que maneja o login do cliente, e ClienteLogout como a que lida com as
+             operações que o cliente pode fazer.
+             Aqui, é Login e MenuAluno, na respectiva ordem.
+          */
+          op = MenuAluno();
+          switch(op) {
+            case 1: VizAulas(); break;
+            case 2: InscreAula(); break;
+            case 3: VizInscri(); break;
+            case 4: VizInfo(); break;
+            case 99: MenuAluno(); break;
+          }
+        }else{
+          Console.WriteLine("invalidoromulo");
         }
+        if (perfil == 24) {
+          Console.WriteLine("AHAHAHAHAA EU VOU VIARAR O CORIGGRNAAA");
+        }
+
+
+        
       }
       catch(Exception erro){
-        op = -1;
-        Console.WriteLine("Erro: " + erro.Message);
-        Console.WriteLine("Tente novamente.");
-      }
-    } while (op != 0);
+          op = -1;
+          Console.WriteLine("Erro: " + erro.Message);
+          Console.WriteLine("Tente novamente.");
+        }
+    }while (op != 0);
+
 
     try{
       Sistema.ArquivosSalvar();
@@ -60,76 +115,63 @@ class Program{
   }
 
   public static int MenuUsuario(){
-    Console.WriteLine("1 Inserir login");
+    Console.WriteLine("---- Olá! Quem é você? ----");
+    Console.WriteLine("01 - Administrador");
+    Console.WriteLine("02 - Cliente");
+    Console.WriteLine("00 - Sair do sistema");
     int op = int.Parse(Console.ReadLine());
+    Console.WriteLine();
     return op;
   }
 
   public static int Login(){
     Console.WriteLine();
     Console.WriteLine("---- Olá! Bem vindo à academia MuitaBomba! ----");
-    Console.WriteLine("---- Por favor, insira seu login. ----");
+    Console.WriteLine("---- Por favor, insira seu id de login. ----");
     string tlogin = Console.ReadLine();
-    Console.WriteLine("---- Agora, sua senha. ----");
-    string tsenha = Console.ReadLine();
-    return 0;
-    // Checa se o login existe
-    /*if(list.Any(tlogin)){
-       Checa se a senha bate com o login
-      if(listdotloginsenha.Any(tsenha)){
-        // Direciona para o menu de acordo com o cargo
-        switch(blabla.cargo) {
-          case "admin":
-            MenuAdmin();
-            break;
-          case "aluno":
-            MenuAluno();
-            break;
-        }
 
-      }else{
-        Console.WriteLine("Senha inválida");
-      }
-      
-    }else{
-        Console.WriteLine("Login inválido");
-    }*/
+    return int.Parse(tlogin);
     }
 
-    
-
   public static int MenuAluno() {
-    Console.WriteLine("00 - Finalizar o sistema");
-    return 0;
+    /*
+      Operações a serem adicionadas:
+        - ver aulas disponiveis
+        - inscrever-se em aula
+        - ver inscrições feitas
+        - ver o plano
+        - ver a matricula
+        - logout
+    */
+    Console.WriteLine();
+    Console.WriteLine("---- Olá, " + clienteLogin.GetNome() + " ----");
+    Console.WriteLine("01 - Visualizar aulas disponíveis");
+    Console.WriteLine("02 - Inscrever-se em aula");
+    Console.WriteLine("03 - Visualizar aulas inscritas");
+    // Visualizar plano e matrícula
+    Console.WriteLine("04 - Visualizar informações da conta");
+
+    Console.WriteLine("00 - Logout");
+    return int.Parse(Console.ReadLine());
   }
 
-  public static int MenuAdmin() {
-    Console.WriteLine("---- Escolha uma opção. ----");
-    Console.WriteLine("01 - Inserir novo login");
-    Console.WriteLine("02 - Listar logins cadastrados");
-    Console.WriteLine("03 - Atualizar logins cadastrados");
-    Console.WriteLine("04 - Excluir login cadastrado");
-    Console.WriteLine("05 - Inserir nova matrícula");
-    Console.WriteLine("06 - Listar matrículas cadastradas");
-    Console.WriteLine("07 - Atualizar matrículas cadastradas");
-    Console.WriteLine("08 - Excluir matrícula cadastrada");
+  public static void VizAulas(){
 
-    Console.WriteLine("09 - Inserir aula");
-    Console.WriteLine("10 - Listar aulas cadastradas");
-    Console.WriteLine("11 - Atualizar aula");
-    Console.WriteLine("12 - Excluir um aula");
-
-    Console.WriteLine("13 - Inserir plano");
-    Console.WriteLine("14 - Listar planos cadastrados");
-    Console.WriteLine("15 - Atualizar plano");
-    Console.WriteLine("16 - Excluir um plano");
-    Console.WriteLine("00 - Finalizar o sistema");
-    Console.WriteLine("-----------------------");
-    return 0;
   }
 
-  // Talvez falte aqui também a inscrição em plano :c
-  public static int Menu(){
+  public static void InscreAula() {
+
+  }
+
+  public static void VizInscri() {
+ 
+  }
+
+  public static void VizInfo() {
+ 
+  }
+
+  public static int MenuAdmin(){
     Console.WriteLine();
     Console.WriteLine("---- Escolha uma opção. ----");
     Console.WriteLine("01 - Inserir novo login");
@@ -156,6 +198,7 @@ class Program{
     Console.WriteLine("19 - Atualizar uma inscrição");
     Console.WriteLine("20 - Excluir uma inscrição");
     
+    Console.WriteLine("99 - Voltar ao menu anterior");
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
     Console.WriteLine("Opção: ");
