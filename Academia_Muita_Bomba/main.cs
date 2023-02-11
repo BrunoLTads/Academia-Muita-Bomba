@@ -55,7 +55,7 @@ class Program{
     }
   }
 
-  public static int Menu(){
+  public static int MenuUsuario(){
     Console.WriteLine("1 Inserir login");
     int op = int.Parse(Console.ReadLine());
     return op;
@@ -68,9 +68,10 @@ class Program{
     string tlogin = Console.ReadLine();
     Console.WriteLine("---- Agora, sua senha. ----");
     string tsenha = Console.ReadLine();
+    return 0;
     // Checa se o login existe
-    if(list.Any(tlogin)){
-      // Checa se a senha bate com o login
+    /*if(list.Any(tlogin)){
+       Checa se a senha bate com o login
       if(listdotloginsenha.Any(tsenha)){
         // Direciona para o menu de acordo com o cargo
         switch(blabla.cargo) {
@@ -88,12 +89,14 @@ class Program{
       
     }else{
         Console.WriteLine("Login inválido");
+    }*/
     }
 
     
 
   public static int MenuAluno() {
     Console.WriteLine("00 - Finalizar o sistema");
+    return 0;
   }
 
   public static int MenuAdmin() {
@@ -118,6 +121,7 @@ class Program{
     Console.WriteLine("16 - Excluir um plano");
     Console.WriteLine("00 - Finalizar o sistema");
     Console.WriteLine("-----------------------");
+    return 0;
   }
 
   // Talvez falte aqui também a inscrição em plano :c
