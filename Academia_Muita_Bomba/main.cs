@@ -74,7 +74,7 @@ class Program{
         }
         if(perfil == 2 && clienteLogin == null){
           op = Login();
-          clienteLogin = 
+          clienteLogin = Sistema.LoginRead(op);
 
         // Selecionou o perfil de cliente e está logado
         }
@@ -90,8 +90,11 @@ class Program{
             case 2: InscreAula(); break;
             case 3: VizInscri(); break;
             case 4: VizInfo(); break;
-            case 99: MenuAluno(); break;
+            case 0: perfil = 0; clienteLogin = null; MenuAluno();  break;
           }
+        }
+        if (perfil == 99) {
+          break;
         }
         if (perfil == 24) {
           Console.WriteLine("AHAHAHAHAA EU VOU VIARAR O CORIGGRNAAA");
@@ -120,7 +123,7 @@ class Program{
     Console.WriteLine("---- Olá! Quem é você? ----");
     Console.WriteLine("01 - Administrador");
     Console.WriteLine("02 - Cliente");
-    Console.WriteLine("00 - Sair do sistema");
+    Console.WriteLine("99 - Sair do sistema");
     int op = int.Parse(Console.ReadLine());
     Console.WriteLine();
     return op;
@@ -131,6 +134,7 @@ class Program{
     Console.WriteLine("---- Olá! Bem vindo à academia MuitaBomba! ----");
     Console.WriteLine("---- Por favor, insira seu id de login. ----");
     string tlogin = Console.ReadLine();
+
 
     return int.Parse(tlogin);
     }
@@ -158,7 +162,11 @@ class Program{
   }
 
   public static void VizAulas(){
-
+    // para cada aula na lista de aulas
+    foreach (Aula aula in Sistema.AulaRead() ){
+      Console.Write(aula);
+    }
+    
   }
 
   public static void InscreAula() {
