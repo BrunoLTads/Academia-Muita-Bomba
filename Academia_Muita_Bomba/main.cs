@@ -37,11 +37,12 @@ class Program{
 
         // Não selecionou o perfil ainda, vai mostrar o menu de user
         if (perfil == 0) {
-          op = 0;
+          //op = 0;
           perfil = MenuUsuario();
 
         // Selecionou o perfil de admin
-        }else if(perfil == 1) {
+        }
+        if (perfil == 1) {
           op = MenuAdmin();
           /* O comando try junto com o catch mais abaixo está sendo utilizado na criação de um bloco de erro.
            Caso o usuário erre o input, o menu enviará o usuário ao início. */
@@ -70,11 +71,13 @@ class Program{
           }
 
         // Selecionou o perfil de cliente, mas não está logado
-        }else if(perfil == 2 && clienteLogin == null){
-          perfil = Login();
+        }
+        if(perfil == 2 && clienteLogin == null){
+          op = Login();
 
         // Selecionou o perfil de cliente e está logado
-        }else if(perfil == 2 && clienteLogin != null){
+        }
+        if(perfil == 2 && clienteLogin != null){
           /* Nota: nos vídeos do IFPet, Gilbert trata ClienteLogin como a função
              que maneja o login do cliente, e ClienteLogout como a que lida com as
              operações que o cliente pode fazer.
