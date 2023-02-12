@@ -74,6 +74,7 @@ class Program{
         }
         if(perfil == 2 && clienteLogin == null){
           op = Login();
+          clienteLogin = 
 
         // Selecionou o perfil de cliente e está logado
         }
@@ -91,8 +92,6 @@ class Program{
             case 4: VizInfo(); break;
             case 99: MenuAluno(); break;
           }
-        }else{
-          Console.WriteLine("invalidoromulo");
         }
         if (perfil == 24) {
           Console.WriteLine("AHAHAHAHAA EU VOU VIARAR O CORIGGRNAAA");
