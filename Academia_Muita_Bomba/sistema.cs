@@ -99,6 +99,7 @@ class Sistema{
     }
     return null;
     }
+
   public static void MatriculaUpdate(Matricula obj){
     // Buscar matricula informada
     Matricula aux = MatriculaRead(obj.GetId());
@@ -112,6 +113,7 @@ class Sistema{
       aux.SetIdLogin(obj.GetIdLogin());
     }
   }
+
   public static void MatriculaDelete(Matricula obj){
     //Encontrar o indíce do obj na lista
     Matricula aux = MatriculaRead(obj.GetId());
@@ -120,6 +122,7 @@ class Sistema{
     }
     // Remove a matricula quando o índice for achado
   }
+  
   public static void AulaCreate(Aula obj){
     // Id da aula
     int id = 0;

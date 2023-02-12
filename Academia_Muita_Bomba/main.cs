@@ -75,6 +75,10 @@ class Program{
         if(perfil == 2 && clienteLogin == null){
           op = Login();
           clienteLogin = Sistema.LoginRead(op);
+          if(op == 666) {
+            Console.WriteLine();
+            Console.WriteLine("Dados incorretos!!!");
+          }
 
         // Selecionou o perfil de cliente e está logado
         }
@@ -134,9 +138,15 @@ class Program{
     Console.WriteLine("---- Olá! Bem vindo à academia MuitaBomba! ----");
     Console.WriteLine("---- Por favor, insira seu id de login. ----");
     string tlogin = Console.ReadLine();
-
-
-    return int.Parse(tlogin);
+    Console.WriteLine("---- Agora, sua senha. ----");
+    string tsenha = Console.ReadLine();
+    // se senha do login cujo id foi digitado
+    if ( Sistema.LoginRead(int.Parse(tlogin)).GetSenha() == tsenha ){
+      return int.Parse(tlogin);
+    }else{
+      return 666;
+    }
+    
     }
 
   public static int MenuAluno() {
@@ -170,15 +180,15 @@ class Program{
   }
 
   public static void InscreAula() {
-
+    Console.WriteLine(Sistema.AulaRead());
   }
 
   public static void VizInscri() {
- 
+    
   }
 
   public static void VizInfo() {
- 
+    Console.WriteLine();
   }
 
   public static int MenuAdmin(){
