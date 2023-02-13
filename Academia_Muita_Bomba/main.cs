@@ -93,7 +93,7 @@ class Program{
           op = MenuAluno();
           switch(op) {
             case 1: VizAulas(); break;
-          case 2: InscricaoCreateAluno(); break;
+          case 2: InscreAula(); break;
             case 3: VizInscri(); break;
             case 4: VizInfo(); break;
             case 0: perfil = 0; clienteLogin = null; MenuAluno();  break;
@@ -182,7 +182,7 @@ class Program{
     
   }
 
-  public static void InscricaoCreateAluno(){
+  public static void InscreAula(){
     //A única diferença aqui é que o cliente/aluno só vai conseguir ver o login dele. No InscricaoCreate o usuário observa todos os logins e, consequentemente, as senhas KKKKKKKKKKKKK
     Console.Write("Informe o id da inscrição: ");
     int id = int.Parse(Console.ReadLine());
