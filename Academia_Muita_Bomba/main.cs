@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
 using System.Threading;
+using System.Linq;
+using System.Collections.Generic;
 
 /*
   O sistema de login do IFPet é feito usando 
@@ -91,7 +93,7 @@ class Program{
           op = MenuAluno();
           switch(op) {
             case 1: VizAulas(); break;
-            case 2: InscreAula(); break;
+          case 2: InscricaoCreateAluno(); break;
             case 3: VizInscri(); break;
             case 4: VizInfo(); break;
             case 0: perfil = 0; clienteLogin = null; MenuAluno();  break;
@@ -172,23 +174,77 @@ class Program{
   }
 
   public static void VizAulas(){
-    // para cada aula na lista de aulas
+    // para cada aula na lista de aula
+    Console.WriteLine("As aulas disponíveis são:");
     foreach (Aula aula in Sistema.AulaRead() ){
       Console.Write(aula);
     }
     
   }
 
-  public static void InscreAula() {
-    Console.WriteLine(Sistema.AulaRead());
-  }
+  public static void InscricaoCreateAluno(){
+    //A única diferença aqui é que o cliente/aluno só vai conseguir ver o login dele. No InscricaoCreate o usuário observa todos os logins e, consequentemente, as senhas KKKKKKKKKKKKK
+    Console.Write("Informe o id da inscrição: ");
+    int id = int.Parse(Console.ReadLine());
+    
+    IEnumerable<Login> loginesp = from Login in Sistema.logins
+                                    where Login.Nome == clienteLogin.GetNome()
+                                    select Login;
+    
+    foreach(var login in loginesp){
+    Console.WriteLine("Selecione o id do seu login: \n" +  login);
+      }
+    
+      
+    Console.Write("Informe o id do login: ");
+    int idLogin = int.Parse(Console.ReadLine());
+
+    AulaRead();
+    Console.Write("Informe o id da aula: ");
+    int idAula = int.Parse(Console.ReadLine());
+
+    Inscricao obj = new Inscricao(id, idLogin, idAula);
+    Sistema.InscricaoCreate(obj);
+    }
 
   public static void VizInscri() {
+    // 
+    IEnumerable<Inscricao> inscricaoesp = from Inscricao in Sistema.inscricoes
+                                    where Inscricao.IdLogin == clienteLogin.GetId()
+                                    select Inscricao;
     
-  }
+    foreach(var obj in inscricaoesp){
+    var aulainscrita = obj.IdAula;
 
+    IEnumerable<Aula> aulaesp = from Aula in Sistema.aulas
+                                  where Aula.Id == aulainscrita
+                                  select Aula;
+    
+    foreach(var aulas in aulaesp){
+      Console.WriteLine("Você está inscrito na(s) seguinte(s) aulas:\n" + aulas);
+  }
+      }
+    } 
+  
   public static void VizInfo() {
-    Console.WriteLine();
+    IEnumerable<Matricula> matriculaesp = from Matricula in Sistema.matriculas
+                                    where Matricula.Nome == clienteLogin.GetNome()
+                                    select Matricula;
+    
+    foreach(var obj in matriculaesp){
+    var id = obj.IdPlano;
+    Console.WriteLine("Sua matrícula é: \n" +  obj);
+
+    IEnumerable<Plano> planoesp = from Plano in Sistema.planos
+                                  where Plano.Id == id
+                                  select Plano;
+    
+    foreach(var planos in planoesp){
+      Console.WriteLine("Seu plano é: \n" + planos);
+    }
+      }
+
+    
   }
 
   public static int MenuAdmin(){
@@ -245,10 +301,17 @@ class Program{
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
   public static void LoginRead(){
-    Console.WriteLine("----- Listar os registros cadastrados -----");
-    foreach(Login obj in Sistema.LoginRead())
-     Console.WriteLine(obj);
-    Console.WriteLine("-------------------------------");
+    Console.WriteLine("----- Listar os Logins cadastrados -----");
+    // Ordenando os logins pelo Id utilizando o metodo OrderBy do Linq
+    IEnumerable<Login> loginord = from Login in Sistema.logins
+                                  where Login.Id >= 1
+                                  select Login;
+
+    loginord = loginord.OrderBy(Login => Login.Id);
+    foreach(var obj in loginord){
+      Console.WriteLine(obj);
+    }
+    
   }
   public static void LoginUpdate(){
     Console.WriteLine("----- Atualize um login -----");
@@ -257,25 +320,25 @@ class Program{
     int id = int.Parse(Console.ReadLine());
     Console.Write("Informe a descrição: ");
     string nome = Console.ReadLine();
-    // Instanciar a classe Registro
+    // Instanciar a classe Login
     string senha = Console.ReadLine();
     string cargo = Console.ReadLine();
     Login obj = new Login(id, nome, senha, cargo);
-    // Atualizar o registro no sistema
+    // Atualizar o Login no sistema
     Sistema.LoginUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
   public static void LoginDelete(){
-    Console.WriteLine("----- Exclua um registro -----");
+    Console.WriteLine("----- Exclua um Login -----");
     // Ler dados
     Console.Write("Informe o id do login: ");
     int id = int.Parse(Console.ReadLine());
     string nome = "";
     string senha = "";
     string cargo = "";
-    // Instanciar a classe Registro
+    // Instanciar a classe Login
     Login obj = new Login(id, nome, senha, cargo);
-    // Excluir o registro no sistema
+    // Excluir o Login no sistema
     Sistema.LoginDelete(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
@@ -309,10 +372,15 @@ class Program{
   }
   public static void MatriculaRead(){
     Console.WriteLine("----- Listar as matrículas cadastradas -----");
-    foreach(Matricula obj in Sistema.MatriculaRead())
-     Console.WriteLine(obj);
-    Console.WriteLine("-------------------------------");
+    IEnumerable<Matricula> matriculaord = from Matricula in Sistema.matriculas
+                                  where Matricula.Id >= 1
+                                  select Matricula;
+
+    matriculaord = matriculaord.OrderBy(Matricula => Matricula.Id);
+    foreach(var obj in matriculaord){
+      Console.WriteLine(obj);
   }
+    }
   public static void MatriculaUpdate(){
     Console.WriteLine("----- Atualize uma matrícula -----");
     // Ler dados
@@ -334,7 +402,7 @@ class Program{
     int idLogin = int.Parse(Console.ReadLine());
     // Instanciar a classe Matricula
     Matricula obj = new Matricula(id, nome, idade, pagamento, idPlano, idLogin);
-    // Atualizar o registro no sistema
+    // Atualizar o Login no sistema
     Sistema.MatriculaUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
@@ -369,10 +437,16 @@ class Program{
 
   public static void AulaRead(){
     Console.WriteLine("----- Listar as aulas cadastradas -----");
-    foreach(Aula obj in Sistema.AulaRead())
-     Console.WriteLine(obj);
+    IEnumerable<Aula> aulaord = from Aula in Sistema.aulas
+                                  where Aula.Id >= 1
+                                  select Aula;
+
+    aulaord = aulaord.OrderBy(Aula => Aula.Datahora);
+    foreach(var obj in aulaord){
+      Console.WriteLine(obj);
     Console.WriteLine("-------------------------------");
   }
+    }
   public static void AulaUpdate(){
     Console.WriteLine("----- Atualizar uma aula -----");
     Console.Write("Informe o id da aula a ser utilizada");
@@ -416,10 +490,15 @@ class Program{
 
   public static void PlanoRead(){
     Console.WriteLine("----- Listar os planos cadastrados -----");
-    foreach(Plano obj in Sistema.PlanoRead())
-     Console.WriteLine(obj);
-    Console.WriteLine("-------------------------------");
+    IEnumerable<Plano> planoord = from Plano in Sistema.planos
+                                  where Plano.Id >= 1
+                                  select Plano;
+
+    planoord = planoord.OrderBy(Plano => Plano.Id);
+    foreach(var obj in planoord){
+      Console.WriteLine(obj);
   }
+    }
   public static void PlanoUpdate(){
     Console.WriteLine("----- Atualizar um plano -----");
     Console.Write("Informe o id do plano a ser utilizado");
@@ -464,7 +543,7 @@ class Program{
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
   public static void InscricaoRead(){
-    Console.WriteLine("----- Listar as matrículas cadastradas -----");
+    Console.WriteLine("----- Listar inscrições cadastradas -----");
     foreach(Inscricao obj in Sistema.InscricaoRead())
      Console.WriteLine(obj);
     Console.WriteLine("-------------------------------");
@@ -484,7 +563,7 @@ class Program{
     
     // Instanciar a classe Inscricao
     Inscricao obj = new Inscricao(id, idLogin, idAula);
-    // Atualizar o registro no sistema
+    // Atualizar o Login no sistema
     Sistema.InscricaoUpdate(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }

@@ -6,6 +6,10 @@ public class Login{
   private string senha;
   private string cargo;
 
+  public int CompareTo(Login obj){
+    return nome.CompareTo(obj.nome);
+  }
+  
   public int Id{
     get => id;
     set => id = value;
@@ -59,6 +63,6 @@ public class Login{
     return cargo;
   }
   public override String ToString(){
-    return $"{id} - {nome} - {senha} - {cargo}";
+    return $"Id: {id}\nNome: {nome}\nSenha: {senha}\nCargo: {cargo}\n";
   }
 }

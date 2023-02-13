@@ -1,10 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfMatricula xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Matricula>
+    <id>1</id>
+    <nome>Bruno</nome>
+    <idade>20</idade>
+    <pagamento>2023-12-12T00:00:00</pagamento>
+    <idPlano>1</idPlano>
+    <idLogin>1</idLogin>
     <Id>1</Id>
     <Nome>Bruno</Nome>
     <Idade>20</Idade>
     <IdPlano>1</IdPlano>
     <IdLogin>1</IdLogin>
+  </Matricula>
+  <Matricula>
+    <id>2</id>
+    <nome>Rômulo</nome>
+    <idade>19</idade>
+    <pagamento>2023-12-12T00:00:00</pagamento>
+    <idPlano>1</idPlano>
+    <idLogin>2</idLogin>
+    <Id>2</Id>
+    <Nome>Rômulo</Nome>
+    <Idade>19</Idade>
+    <IdPlano>1</IdPlano>
+    <IdLogin>2</IdLogin>
   </Matricula>
 </ArrayOfMatricula>

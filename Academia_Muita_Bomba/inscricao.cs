@@ -50,6 +50,6 @@ public class Inscricao{
     return idAula;
   }
   public override String ToString(){
-    return $"{id} - {idLogin} - {idAula}";
+    return $"Id: {id}\nIdLogin: {idLogin}\nIdAula: {idAula}\n";
   }
 }

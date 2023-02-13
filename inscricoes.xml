@@ -5,4 +5,9 @@
     <IdLogin>1</IdLogin>
     <IdAula>1</IdAula>
   </Inscricao>
+  <Inscricao>
+    <Id>2</Id>
+    <IdLogin>2</IdLogin>
+    <IdAula>1</IdAula>
+  </Inscricao>
 </ArrayOfInscricao>

@@ -1,13 +1,19 @@
 using System;
 
-public class Matricula{
-  private int id;
-  private string nome;
-  private int idade;
-  private DateTime pagamento;
-  private int idPlano;
-  private int idLogin;
+public class Matricula : IComparable<Matricula>{
+  public int id;
+  public string nome;
+  public int idade;
+  public DateTime pagamento;
+  public int idPlano;
+  public int idLogin;
 
+  public int CompareTo(Matricula obj){
+    return nome.CompareTo(obj.nome);
+    return idPlano.CompareTo(obj.idPlano);
+  }
+
+  
   public int Id{
   get => id;
   set => id = value;
@@ -81,6 +87,6 @@ public class Matricula{
     return idLogin;
   }
   public override String ToString(){
-    return $"{id} - {nome} - {idade} - {pagamento:dd/MM/yyyy}";
+    return $"Id: {id} \nNome: {nome} \nIdade: {idade} \nData de pagamento: {pagamento:dd/MM/yyyy}\n";
   }
 }

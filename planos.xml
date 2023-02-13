@@ -3,7 +3,7 @@
   <Plano>
     <Id>1</Id>
     <Nome>Mensal</Nome>
-    <Descricao>Plano mensal padrão. Dá acesso a área de musculação e as aulas.</Descricao>
+    <Descricao>Plano mensal padrão. Fornece acesso a área de musculação e as aulas.</Descricao>
     <Preco>60</Preco>
   </Plano>
 </ArrayOfPlano>

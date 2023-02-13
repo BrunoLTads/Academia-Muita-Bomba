@@ -5,11 +5,11 @@ using System.IO;
 using System.Text;
 
 class Sistema{
-  private static List<Login> logins = new List<Login>();
-  private static List<Matricula> matriculas = new List<Matricula>();
-  private static List<Aula> aulas = new List<Aula>();
-  private static List<Plano> planos = new List<Plano>();
-  private static List<Inscricao> inscricoes = new List<Inscricao>();
+  public static List<Login> logins = new List<Login>();
+  public static List<Matricula> matriculas = new List<Matricula>();
+  public static List<Aula> aulas = new List<Aula>();
+  public static List<Plano> planos = new List<Plano>();
+  public static List<Inscricao> inscricoes = new List<Inscricao>();
 
 
   public static void ArquivosAbrir(){
